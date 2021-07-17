@@ -27,7 +27,7 @@
     "src/**/*.{js,json,scss}": "prettier --single-quote --tab-width 4 --write"
   },
   "hooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "format-code"
   },
   "devDependencies": {
     "husky": "^7.0.1",
