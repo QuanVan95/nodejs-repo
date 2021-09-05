@@ -6,6 +6,7 @@ const app = express();
 const port = 3000;
 const route = require('./routes');
 const db = require('./config/db');
+const methodOverride = require('method-override');
 
 // connect to db
 db.connect();
@@ -22,11 +23,17 @@ app.use(express.json()); //XMLHTTPRequest, fetch, axios
 //HTTP Logger
 app.use(morgan('combined'));
 
+//Override method
+app.use(methodOverride('_method'));
+
 //Template engine
 app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b,
+        },
     })
 );
 app.set('view engine', 'hbs');
